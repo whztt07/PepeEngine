@@ -1,0 +1,60 @@
+float   fBias;
+float   fPower;
+float4  f4DeepColor;
+float4  f4ShallowColor;
+float4  f4ReflectionColor;
+float   fReflectionAmount;
+float   fReflectionBlur;
+float   fWaterAmount;
+float   fHdrMultiplier;
+
+struct PS_INPUT
+{     
+   float3 Normal     : TEXCOORD1;             
+   float3 vVec       : TEXCOORD2;
+   float2 bumpCoord0 : TEXCOORD3;
+   float2 bumpCoord1 : TEXCOORD4;
+   float2 bumpCoord2 : TEXCOORD5;
+   float3 Tangent    : TEXCOORD6;
+   float3 Binormal   : TEXCOORD7;
+};
+
+sampler bump;
+sampler skyBox;
+
+float fresnel(float3 vView, float3 normal, float bias, float power)
+{
+   return saturate(bias + (1.0 - bias) * pow((1.0 - max(dot(vView, normal), 0)), power));
+}
+
+float4 ps_main(PS_INPUT Input) : COLOR0
+{     
+   Input.vVec   = normalize(Input.vVec);
+   float4 t0    = tex2D(bump, Input.bumpCoord0) * 2.0 - 1.0;
+   float4 t1    = tex2D(bump, Input.bumpCoord1) * 2.0 - 1.0;
+   float4 t2    = tex2D(bump, Input.bumpCoord2) * 2.0 - 1.0;
+   float3 N     = t0.xyz + t1.xyz + t2.xyz;  
+   
+   float3x3 m; // tangent to world matrix
+   m[0] = Input.Tangent;
+   m[1] = Input.Binormal;
+   m[2] = Input.Normal;
+
+   N = normalize(mul(N, m));
+   
+   float4 vReflect;
+   vReflect.xyz       = reflect(Input.vVec, N);
+   vReflect.w         = fReflectionBlur;
+   vReflect.y         = -vReflect.y;
+   float4 reflection  = texCUBEbias(skyBox, vReflect);
+
+   reflection.rgb *= (reflection.r + reflection.g + reflection.b) * fHdrMultiplier;
+   
+   // fresnel
+   float facing       = 1.0 - max(dot(-Input.vVec, N), 0);
+   float fresnel      = saturate(fBias + pow(facing, fPower));
+   float4 waterColor  = lerp(f4ShallowColor, f4DeepColor, facing) * fWaterAmount;
+   reflection         = lerp(waterColor, reflection * f4ReflectionColor, fresnel) * fReflectionAmount;
+   
+   return waterColor + reflection;   
+}

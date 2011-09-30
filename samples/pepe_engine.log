@@ -1,0 +1,110 @@
+2011-9-30, 20:20:15: Pepe Engine Started
+2011-9-30, 20:20:15: Loading dynamic library: OS_Win32
+2011-9-30, 20:20:15: Dynamic library successfully loaded
+2011-9-30, 20:20:15: Installing plugin: Win32 Operating System
+2011-9-30, 20:20:15: Plugin successfully installed
+2011-9-30, 20:20:15: Loading dynamic library: Renderer_Direct3D9
+2011-9-30, 20:20:15: Dynamic library successfully loaded
+2011-9-30, 20:20:15: Installing plugin: Direct3D 9 Renderer
+2011-9-30, 20:20:15: Plugin successfully installed
+2011-9-30, 20:20:17: Config options
+2011-9-30, 20:20:17: -------------------------
+2011-9-30, 20:20:17:  * Anti-aliasing: none
+2011-9-30, 20:20:17:  * FullScreen: false
+2011-9-30, 20:20:17:  * Video Mode: 800 x 600 @ 32-bit colour
+2011-9-30, 20:20:17:  * Depth Buffer: true
+2011-9-30, 20:20:17:  * border: fixed
+2011-9-30, 20:20:17:  * vsync: false
+2011-9-30, 20:20:17: Renderer capabilities
+2011-9-30, 20:20:17: -------------------------
+2011-9-30, 20:20:17: RenderSystem Name: Direct3D9 Renderer
+2011-9-30, 20:20:17:  * Hardware generation of mipmaps: yes
+2011-9-30, 20:20:17:  * Texture blending: yes
+2011-9-30, 20:20:17:  * Anisotropic texture filtering: yes
+2011-9-30, 20:20:17:  * Dot product texture operation: yes
+2011-9-30, 20:20:17:  * Cube mapping: yes
+2011-9-30, 20:20:17:  * Hardware stencil buffer: yes
+2011-9-30, 20:20:17:    - Stencil depth: 8
+2011-9-30, 20:20:17:    - Two sided stencil support: yes
+2011-9-30, 20:20:17:    - Wrap stencil values: yes
+2011-9-30, 20:20:17:  * Hardware vertex / index buffers: yes
+2011-9-30, 20:20:17:  * Vertex programs: yes
+2011-9-30, 20:20:17:    - Max vertex program version: vs_3_0
+2011-9-30, 20:20:17:  * Pixel programs: yes
+2011-9-30, 20:20:17:    - Max pixel program version: ps_3_0
+2011-9-30, 20:20:17:  * Texture Compression: yes
+2011-9-30, 20:20:17:    - DXT: yes
+2011-9-30, 20:20:17:    - VTC: no
+2011-9-30, 20:20:17:  * Scissor Rectangle: yes
+2011-9-30, 20:20:17:  * Hardware Occlusion Query: yes
+2011-9-30, 20:20:17:  * User clip planes: yes
+2011-9-30, 20:20:17:  * VET_UBYTE4 vertex element type: yes
+2011-9-30, 20:20:17:  * Infinite far plane projection: yes
+2011-9-30, 20:20:17:  * Hardware render-to-texture: yes
+2011-9-30, 20:20:17:  * Floating point textures: yes
+2011-9-30, 20:20:17:  * Non-power-of-two textures: yes
+2011-9-30, 20:20:17:  * Volume textures: yes
+2011-9-30, 20:20:17:  * Multiple Render Targets: 4
+2011-9-30, 20:20:17:  * Point Sprites: yes
+2011-9-30, 20:20:17:  * Extended point parameters: yes
+2011-9-30, 20:20:17:  * Max Point Size: 8192
+2011-9-30, 20:20:17:  * Vertex texture fetch: yes
+2011-9-30, 20:20:17:    - Max vertex textures: 4
+2011-9-30, 20:20:17:    - Vertex textures shared: no
+2011-9-30, 20:20:17: Loading texture: morning.jpg
+2011-9-30, 20:20:17: Loading image: media/textures/morning_UP.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Loading image: media/textures/morning_BK.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Loading image: media/textures/morning_DN.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Loading image: media/textures/morning_FR.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Loading image: media/textures/morning_LF.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Loading image: media/textures/morning_RT.jpg
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Unloading texture: morning.jpg
+2011-9-30, 20:20:17: Texture successfully unloaded
+2011-9-30, 20:20:17: Texture successfully loaded
+2011-9-30, 20:20:17: Loading mesh: OceanSurface2.3ds
+2011-9-30, 20:20:17: Mesh successfully loaded
+2011-9-30, 20:20:17: Loading material: Default
+2011-9-30, 20:20:17: Loading vertex program: ocean.vs
+2011-9-30, 20:20:17: Vertex program successfully loaded
+2011-9-30, 20:20:17: Material successfully loaded
+2011-9-30, 20:20:17: Loading material: Default
+2011-9-30, 20:20:17: Loading pixel program: ocean.ps
+2011-9-30, 20:20:17: Pixel program successfully loaded
+2011-9-30, 20:20:17: Loading vertex program: ocean.vs
+2011-9-30, 20:20:17: Vertex program successfully loaded
+2011-9-30, 20:20:17: Material successfully loaded
+2011-9-30, 20:20:17: Loading texture: waves2.dds
+2011-9-30, 20:20:17: Loading image: media/textures/waves2.dds
+2011-9-30, 20:20:17: Image successfully loaded
+2011-9-30, 20:20:17: Unloading texture: waves2.dds
+2011-9-30, 20:20:17: Texture successfully unloaded
+2011-9-30, 20:20:17: Texture successfully loaded
+2011-9-30, 20:20:17: Loading material: SkyBox
+2011-9-30, 20:20:17: Material successfully loaded
+2011-9-30, 20:20:26: Unloading mesh: OceanSurface2.3ds
+2011-9-30, 20:20:26: Mesh successfully unloaded
+2011-9-30, 20:20:26: Unloading mesh: Sky Box Sphere
+2011-9-30, 20:20:26: Mesh successfully unloaded
+2011-9-30, 20:20:26: Uninstalling plugin: Win32 Operating System
+2011-9-30, 20:20:26: Plugin successfully uninstalled
+2011-9-30, 20:20:26: Uninstalling plugin: Direct3D 9 Renderer
+2011-9-30, 20:20:26: Unloading vertex program: ocean.vs
+2011-9-30, 20:20:26: Vertex program successfully unloaded
+2011-9-30, 20:20:26: Unloading pixel program: ocean.ps
+2011-9-30, 20:20:26: Pixel program successfully unloaded
+2011-9-30, 20:20:26: Unloading texture: morning.jpg
+2011-9-30, 20:20:26: Texture successfully unloaded
+2011-9-30, 20:20:26: Unloading texture: waves2.dds
+2011-9-30, 20:20:26: Texture successfully unloaded
+2011-9-30, 20:20:26: Plugin successfully uninstalled
+2011-9-30, 20:20:26: Unloading dynamic library: Renderer_Direct3D9
+2011-9-30, 20:20:26: Dynamic library successfully unloaded
+2011-9-30, 20:20:26: Unloading dynamic library: OS_Win32
+2011-9-30, 20:20:26: Dynamic library successfully unloaded
+2011-9-30, 20:20:26: Pepe Engine Stopped

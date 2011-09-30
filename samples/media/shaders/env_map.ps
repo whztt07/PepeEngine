@@ -1,0 +1,17 @@
+struct PS_INPUT
+{         
+   float3 Normal   : TEXCOORD0;     
+   float3 viewVec  : TEXCOORD1; 
+};
+
+sampler skyBox;
+
+float4 ps_main(PS_INPUT input) : COLOR0
+{   
+   float3 vReflect = reflect(-input.viewVec, input.Normal);   
+
+   return texCUBE(skyBox, vReflect);
+}
+
+
+

@@ -1,0 +1,71 @@
+float    indexOfRefractionRatio : register(c0);
+float    rainbowSpread          : register(c1);
+float    rainbowScale           : register(c2);
+float4   baseColor              : register(c3);
+float    reflectionScale        : register(c4);   
+float    refractionScale        : register(c5);
+float    ambient                : register(c6);   
+
+
+struct PS_INPUT
+{
+   float3 Normal   : TEXCOORD0;
+   float3 viewVec  : TEXCOORD1;
+};
+
+sampler skyBox  : register(s0);
+sampler Rainbow : register(s1);
+
+float4 ps_main(PS_INPUT Input) : COLOR0
+{   
+   Input.Normal  = normalize(Input.Normal);
+   Input.viewVec = normalize(Input.viewVec);
+
+   // Look up the reflection
+   float3 reflVec    = reflect(-Input.viewVec, Input.Normal);
+   float4 reflection = texCUBE(skyBox, reflVec.xyz);
+   
+   // We'll use Snell's refraction law:
+   // n  * sin(theta) = n  * sin(theta)
+   // i            i    r            r
+
+   // sin(theta)
+   //         i
+   float cosine  = dot(Input.viewVec, Input.Normal);
+   float sine    = sqrt(1 - cosine * cosine);
+
+   // sin(theta)
+   //         r
+   float sine2   = saturate(indexOfRefractionRatio * sine);
+   float cosine2 = sqrt(1 - sine2 * sine2);
+
+   // Out of the sine and cosine of the angle between the
+   // refraction vector and the normal we can construct the
+   // refraction vector itself given two base vectors.
+   // These two base vectors are the negative normal and
+   // a tangent vector along the path of the incoming vector
+   // relative to the surface.
+   float3 x = -Input.Normal;
+   float3 y = normalize(cross(cross(Input.viewVec, Input.Normal), Input.Normal));
+
+   // Refraction
+   float3 refrVec    = x * cosine2 + y * sine2;
+   float4 refraction = texCUBE(skyBox, refrVec.xyz);
+
+   // Colors refract differently and the difference is more
+   // visible the stronger the refraction. We'll fake this
+   // effect by adding some rainbowish colors accordingly.
+   float4 rainbow = tex1D(Rainbow, pow(cosine, rainbowSpread));
+   
+   float4 rain = rainbowScale * rainbow * baseColor;
+   float4 refl = reflectionScale * reflection;
+   float4 refr = refractionScale * refraction * baseColor;
+
+   // There is more light reflected at sharp angles and less
+   // light refracted. There is more color separation of refracted
+   // light at sharper angles
+   return sine * refl + (1 - sine2) * refr + sine2 * rain + ambient;  
+}
+
+
+

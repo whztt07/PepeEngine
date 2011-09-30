@@ -1,0 +1,24 @@
+float4 light_direction : register(c0);
+
+struct PS_INPUT
+{   
+   float3 Normal   : TEXCOORD0;
+   float3 viewVec  : TEXCOORD1;
+   float4 base     : TEXCOORD2;   
+};
+
+float4 ps_main(PS_INPUT Input) : COLOR0
+{   
+   Input.Normal = normalize(Input.Normal);
+
+   // Soft diffuse
+   float diffuse  = 0.5 + 0.5 * dot(light_direction, Input.Normal);
+   // Standard specular
+   float specular = pow(saturate(dot(reflect(-normalize(Input.viewVec), Input.Normal), light_direction)), 24);
+
+   return diffuse * Input.base + specular;
+   
+}
+
+
+
