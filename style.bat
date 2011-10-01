@@ -1,1 +1,0 @@
-e:\bin\AStyle\bin\AStyle.exe --convert-tabs --add-brackets --min-conditional-indent=0 --max-instatement-indent=80 --pad-oper --break-blocks --style=kr --indent=spaces=4 --recursive --indent-col1-comments *.cpp *.h
