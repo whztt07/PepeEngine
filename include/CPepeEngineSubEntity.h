@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Frontend
- * File:	CPepeEngineSubEntity.h   
+ * Tier:    Frontend
+ * File:    CPepeEngineSubEntity.h
  *
- * @brief	Declaration of CPepeEngineSubEntity class.
+ * @brief   Declaration of CPepeEngineSubEntity class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-10-01
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-10-01
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -23,21 +23,25 @@
 _PEPE_ENGINE_START
 
 class _PepeEngineExport CPepeEngineSubEntity
-{		
-	friend CPepeEngineEntity;
+{
+    friend CPepeEngineEntity;
 
-	CPepeEngineSubMesh* m_pSubMesh;
-	CPepeEngineEntity*	m_pParentEntity;
+    CPepeEngineSubMesh* m_pSubMesh;
+    CPepeEngineEntity*  m_pParentEntity;
 
-	tstring m_strMaterialName;
+    tstring m_strMaterialName;
 
-	CPepeEngineSubEntity(CPepeEngineEntity* pParentEntity, CPepeEngineSubMesh* pSubMesh);
+    CPepeEngineSubEntity(CPepeEngineEntity* pParentEntity, CPepeEngineSubMesh* pSubMesh);
 public:
-		
-	void render() const;
-	
-	void setMaterialName(const tstring &strMaterialName) {m_strMaterialName = strMaterialName;}
-	const tstring& getMaterialName() const {return m_strMaterialName;}
+
+    void render() const;
+
+    void setMaterialName(const tstring &strMaterialName) {
+        m_strMaterialName = strMaterialName;
+    }
+    const tstring& getMaterialName() const {
+        return m_strMaterialName;
+    }
 };
 
 _PEPE_ENGINE_END

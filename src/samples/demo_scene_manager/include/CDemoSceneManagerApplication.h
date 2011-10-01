@@ -4,14 +4,14 @@
 #include "CDefApplication.h"
 
 class CDemoSceneManagerApplication : public CDefApplication
-{	
+{
 public:
-		 CDemoSceneManagerApplication();
-		 ~CDemoSceneManagerApplication();
-		
-	void createCamera();	
-	void createScene();	
-	bool setup();
+    CDemoSceneManagerApplication();
+    ~CDemoSceneManagerApplication();
+
+    void createCamera();
+    void createScene();
+    bool setup();
 };
 
 #endif

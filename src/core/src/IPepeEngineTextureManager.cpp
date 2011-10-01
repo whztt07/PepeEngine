@@ -8,13 +8,13 @@ IPepeEngineTextureManager* CPepeEngineSingleton<IPepeEngineTextureManager>::ms_s
 
 IPepeEngineTextureManager& IPepeEngineTextureManager::getSingleton(void)
 {
-	assert(ms_singleton); 
-	return *ms_singleton;
+    assert(ms_singleton);
+    return *ms_singleton;
 }
 
 IPepeEngineTextureManager* IPepeEngineTextureManager::getSingletonPtr(void)
 {
-	return ms_singleton;
+    return ms_singleton;
 }
 
 _PEPE_ENGINE_END

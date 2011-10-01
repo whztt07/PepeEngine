@@ -1,12 +1,12 @@
 /**
- * Project:		PepeEngine
- * File:		PepeEngine.h 
- * 
- * @author		Piotr 'pepe' Picheta
- * @date		2008-11-30
+ * Project:     PepeEngine
+ * File:        PepeEngine.h
+ *
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-11-30
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef PEPEENGINE_H

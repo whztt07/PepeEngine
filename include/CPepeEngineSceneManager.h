@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Frontend
- * File:	CPepeEngineSceneManager.h 
+ * Tier:    Frontend
+ * File:    CPepeEngineSceneManager.h
  *
- * @brief	Declaration of CPepeEngineSceneManager class.
+ * @brief   Declaration of CPepeEngineSceneManager class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-02-28
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-02-28
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -27,95 +27,113 @@
 
 _PEPE_ENGINE_START
 
-struct FrameStats
-{
-	float			fLastFPS;
-	float			fAvgFPS;
-	float			fBestFPS;
-	float			fWorstFPS;
-	unsigned long	ulBestFrameTime;
-	unsigned long	ulWorstFrameTime;
-	size_t			nTriangleCount;
-	size_t			nBatchCount;	
+struct FrameStats {
+    float           fLastFPS;
+    float           fAvgFPS;
+    float           fBestFPS;
+    float           fWorstFPS;
+    unsigned long   ulBestFrameTime;
+    unsigned long   ulWorstFrameTime;
+    size_t          nTriangleCount;
+    size_t          nBatchCount;
 };
 
 class _PepeEngineExport CPepeEngineSceneManager
-{			
-	typedef stdext::hash_map<tstring, CPepeEngineSceneNode*> SceneNodeMap;
+{
+    typedef stdext::hash_map<tstring, CPepeEngineSceneNode*> SceneNodeMap;
 
-	friend							CPepeEngineSceneNode;
-		
-	CPepeEngineSceneNode*			m_pRoot;
-	CPepeEngineCamera*				m_pCamera;
-	CPepeEngineSkyBox*				m_pSkyBox;
+    friend                          CPepeEngineSceneNode;
 
-	LightList						m_lights;
-	mutable LightList				m_lightsAffectingFrustum;
+    CPepeEngineSceneNode*           m_pRoot;
+    CPepeEngineCamera*              m_pCamera;
+    CPepeEngineSkyBox*              m_pSkyBox;
 
-	CPepeEngineColor				m_bgColor;
+    LightList                       m_lights;
+    mutable LightList               m_lightsAffectingFrustum;
 
-	CPepeEngineAutoParamDataSource	m_autoParamDataSource;
-	MaterialPtr						m_pCurrentMaterial;
+    CPepeEngineColor                m_bgColor;
 
-	FrameStats						m_stats;	
+    CPepeEngineAutoParamDataSource  m_autoParamDataSource;
+    MaterialPtr                     m_pCurrentMaterial;
 
-	unsigned long					m_ulLastSecond;
-	unsigned long					m_ulLastTime;
-	size_t							m_nFrameCount;
+    FrameStats                      m_stats;
 
-	SceneNodeMap					m_nodesMap;
-			
-	void							addToNodeList(CPepeEngineSceneNode* pNode);
-	void							removeFromNodeList(const tstring& strName);
-	void							removeFromNodeList(CPepeEngineSceneNode* pNode);
+    unsigned long                   m_ulLastSecond;
+    unsigned long                   m_ulLastTime;
+    size_t                          m_nFrameCount;
 
-	bool							m_bDebugMode;
-public:	
-	CPepeEngineSceneManager();
-	~CPepeEngineSceneManager();
+    SceneNodeMap                    m_nodesMap;
 
-	void attachCamera(CPepeEngineCamera* pCamera) {delete m_pCamera; m_pCamera = pCamera;}
-	CPepeEngineCamera* getCamera() const {return m_pCamera;}
+    void                            addToNodeList(CPepeEngineSceneNode* pNode);
+    void                            removeFromNodeList(const tstring& strName);
+    void                            removeFromNodeList(CPepeEngineSceneNode* pNode);
 
-	CPepeEngineSceneNode* getRootSceneNode() const;
-	void setRootSceneNode(CPepeEngineSceneNode *pNode);
+    bool                            m_bDebugMode;
+public:
+    CPepeEngineSceneManager();
+    ~CPepeEngineSceneManager();
 
-	CPepeEngineSceneNode* createSceneNode(const tstring& strName);
+    void attachCamera(CPepeEngineCamera* pCamera) {
+        delete m_pCamera;
+        m_pCamera = pCamera;
+    }
+    CPepeEngineCamera* getCamera() const {
+        return m_pCamera;
+    }
 
-	void createSkyBox(const tstring& strSkyBoxName, size_t nSize);
-	void removeSkyBox();
-	CPepeEngineSkyBox* getSkyBox() const {return m_pSkyBox;}
-	bool hasSkyBox() const {return m_pSkyBox != NULL;}
+    CPepeEngineSceneNode* getRootSceneNode() const;
+    void setRootSceneNode(CPepeEngineSceneNode *pNode);
 
-	void setAmbientLight(float r, float g, float b);
-	CPepeEngineLight* createLight(const tstring& strName);
-	void addLight(CPepeEngineLight* pLight);
-	bool hasLight(const CPepeEngineLight* pLight);
-	bool hasLight(const tstring& strName);
-	void removeLight(CPepeEngineLight* pLight);	
-	void removeLight(const tstring& strName);	
-	CPepeEngineLight* getLight(const tstring& strName);
+    CPepeEngineSceneNode* createSceneNode(const tstring& strName);
 
-	void setBgColor(const CPepeEngineColor& color) {m_bgColor = color;}
-	const CPepeEngineColor& getBgColor() const {return m_bgColor;}
+    void createSkyBox(const tstring& strSkyBoxName, size_t nSize);
+    void removeSkyBox();
+    CPepeEngineSkyBox* getSkyBox() const {
+        return m_pSkyBox;
+    }
+    bool hasSkyBox() const {
+        return m_pSkyBox != NULL;
+    }
 
-	void setCurrentMaterial(MaterialPtr pMaterial);
-	const MaterialPtr getCurrentMaterial() const {return m_pCurrentMaterial;}
+    void setAmbientLight(float r, float g, float b);
+    CPepeEngineLight* createLight(const tstring& strName);
+    void addLight(CPepeEngineLight* pLight);
+    bool hasLight(const CPepeEngineLight* pLight);
+    bool hasLight(const tstring& strName);
+    void removeLight(CPepeEngineLight* pLight);
+    void removeLight(const tstring& strName);
+    CPepeEngineLight* getLight(const tstring& strName);
 
-	void drawAll();
-	
-	void findLightsAffectingFrustum();
+    void setBgColor(const CPepeEngineColor& color) {
+        m_bgColor = color;
+    }
+    const CPepeEngineColor& getBgColor() const {
+        return m_bgColor;
+    }
 
-	const CPepeEngineAutoParamDataSource& getAutoParamDataSource() const {return m_autoParamDataSource;}
+    void setCurrentMaterial(MaterialPtr pMaterial);
+    const MaterialPtr getCurrentMaterial() const {
+        return m_pCurrentMaterial;
+    }
 
-	void updateStats();
-	void resetStats();
+    void drawAll();
 
-	const FrameStats&				getFrameStats() const {return m_stats;}
-	inline CPepeEngineSceneNode*	getSceneNode(const tstring& strName) const;
+    void findLightsAffectingFrustum();
 
-	inline void						setDebugMode(bool bDebugMode);
-	inline bool						isDebugMode() const;
+    const CPepeEngineAutoParamDataSource& getAutoParamDataSource() const {
+        return m_autoParamDataSource;
+    }
+
+    void updateStats();
+    void resetStats();
+
+    const FrameStats&               getFrameStats() const {
+        return m_stats;
+    }
+    inline CPepeEngineSceneNode*    getSceneNode(const tstring& strName) const;
+
+    inline void                     setDebugMode(bool bDebugMode);
+    inline bool                     isDebugMode() const;
 };
 
 _PEPE_ENGINE_END

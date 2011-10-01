@@ -6,52 +6,49 @@
 _PEPE_ENGINE_START
 
 // -----------------------------------------------------------------------------------------
-void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) 
+void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message)
 {
-	// Callback method as required by FreeImage to report problems
-	const char* typeName = FreeImage_GetFormatFromFIF(fif);
-	if (typeName)
-	{
-		CPepeEngineLogManager::getSingleton().logMessage(
-			_T("FreeImage error: '") + _TSTR(message) + _T("' when loading format ")
-			+ _TSTR(typeName)
-		);
-	}
-	else
-	{
-		CPepeEngineLogManager::getSingleton().logMessage(
-			_T("FreeImage error: '") + _TSTR(message)
-		);
-	}
+    // Callback method as required by FreeImage to report problems
+    const char* typeName = FreeImage_GetFormatFromFIF(fif);
+
+    if (typeName) {
+        CPepeEngineLogManager::getSingleton().logMessage(
+            _T("FreeImage error: '") + _TSTR(message) + _T("' when loading format ")
+            + _TSTR(typeName)
+        );
+    } else {
+        CPepeEngineLogManager::getSingleton().logMessage(
+            _T("FreeImage error: '") + _TSTR(message)
+        );
+    }
 
 }
 
 // -----------------------------------------------------------------------------------------
 CPepeEngineImageManager::CPepeEngineImageManager()
 {
-	FreeImage_Initialise(false);
-	FreeImage_SetOutputMessage(FreeImageErrorHandler);
+    FreeImage_Initialise(false);
+    FreeImage_SetOutputMessage(FreeImageErrorHandler);
 }
 
 // -----------------------------------------------------------------------------------------
 CPepeEngineImageManager::~CPepeEngineImageManager()
 {
-	FreeImage_DeInitialise();
+    FreeImage_DeInitialise();
 }
 
 // -----------------------------------------------------------------------------------------
 ResourcePtr CPepeEngineImageManager::create(const tstring& strName)
 {
-	ResourcePtr pImage = getByName(strName);
-	
-	if (pImage.isNull())
-	{
-		pImage = new CPepeEngineImage(strName);
+    ResourcePtr pImage = getByName(strName);
 
-		add(strName, pImage);	
-	}
+    if (pImage.isNull()) {
+        pImage = new CPepeEngineImage(strName);
 
-	return pImage;
+        add(strName, pImage);
+    }
+
+    return pImage;
 }
 
 // -----------------------------------------------------------------------------------------
@@ -59,13 +56,13 @@ template<> CPepeEngineImageManager* CPepeEngineSingleton<CPepeEngineImageManager
 
 CPepeEngineImageManager& CPepeEngineImageManager::getSingleton(void)
 {
-	assert(ms_singleton); 
-	return *ms_singleton;
+    assert(ms_singleton);
+    return *ms_singleton;
 }
 
 CPepeEngineImageManager* CPepeEngineImageManager::getSingletonPtr(void)
 {
-	return ms_singleton;
+    return ms_singleton;
 }
 
 _PEPE_ENGINE_END

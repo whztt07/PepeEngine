@@ -6,16 +6,15 @@ _PEPE_ENGINE_START
 // -----------------------------------------------------------------------------------------
 ResourcePtr CPepeEngineDynamicLibraryManager::create(const tstring& strName)
 {
-	ResourcePtr pDynamicLibrary = getByName(strName);
-	
-	if (pDynamicLibrary.isNull())
-	{
-		pDynamicLibrary = new CPepeEngineDynamicLibrary(strName);
+    ResourcePtr pDynamicLibrary = getByName(strName);
 
-		add(strName, pDynamicLibrary);	
-	}
+    if (pDynamicLibrary.isNull()) {
+        pDynamicLibrary = new CPepeEngineDynamicLibrary(strName);
 
-	return pDynamicLibrary;
+        add(strName, pDynamicLibrary);
+    }
+
+    return pDynamicLibrary;
 }
 
 // -----------------------------------------------------------------------------------------
@@ -23,13 +22,13 @@ template<> CPepeEngineDynamicLibraryManager* CPepeEngineSingleton<CPepeEngineDyn
 
 CPepeEngineDynamicLibraryManager& CPepeEngineDynamicLibraryManager::getSingleton(void)
 {
-	assert(ms_singleton); 
-	return *ms_singleton;
+    assert(ms_singleton);
+    return *ms_singleton;
 }
 
 CPepeEngineDynamicLibraryManager* CPepeEngineDynamicLibraryManager::getSingletonPtr(void)
 {
-	return ms_singleton;
+    return ms_singleton;
 }
 
 _PEPE_ENGINE_END

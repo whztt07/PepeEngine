@@ -5,7 +5,7 @@ _PEPE_ENGINE_START
 
 // -----------------------------------------------------------------------------------------
 void IPepeEngineWindow::initConfigOptions()
-{	
+{
 
 }
 

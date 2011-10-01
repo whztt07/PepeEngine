@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Backend 
- * File:	CPepeEngineDirect3D9TextureManager.h 
+ * Tier:    Backend
+ * File:    CPepeEngineDirect3D9TextureManager.h
  *
- * @brief	Declaration of CPepeEngineDirect3D9TextureManager class. This class use Direct3D 9 library. 		
+ * @brief   Declaration of CPepeEngineDirect3D9TextureManager class. This class use Direct3D 9 library.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-05-08
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-05-08
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -23,16 +23,16 @@
 _PEPE_ENGINE_START
 
 class CPepeEngineDirect3D9TextureManager : public IPepeEngineTextureManager
-{	
-	LPDIRECT3DDEVICE9 m_pDevice;
+{
+    LPDIRECT3DDEVICE9 m_pDevice;
 public:
 
-	CPepeEngineDirect3D9TextureManager(LPDIRECT3DDEVICE9 pDevice) : m_pDevice(pDevice)  {}
+    CPepeEngineDirect3D9TextureManager(LPDIRECT3DDEVICE9 pDevice) : m_pDevice(pDevice)  {}
 
-	ResourcePtr create(const tstring& strName);
+    ResourcePtr create(const tstring& strName);
 
-	void releaseDefaultPoolResources();
-	void recreateDefaultPoolResources();
+    void releaseDefaultPoolResources();
+    void recreateDefaultPoolResources();
 };
 
 

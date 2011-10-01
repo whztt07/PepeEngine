@@ -6,11 +6,11 @@
 class CDemoGlassApplication : public CDefApplication
 {
 public:
-		 CDemoGlassApplication();
-		 ~CDemoGlassApplication();
-	
-	void createScene();	
-	bool setup();
+    CDemoGlassApplication();
+    ~CDemoGlassApplication();
+
+    void createScene();
+    bool setup();
 };
 
 #endif

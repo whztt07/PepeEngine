@@ -7,7 +7,7 @@ const tstring strPluginName = _T("Direct3D 9 Renderer");
 
 // -----------------------------------------------------------------------------------------
 CPepeEngineDirect3D9Plugin::CPepeEngineDirect3D9Plugin()
-: m_pRenderer(0)
+    : m_pRenderer(0)
 {
 
 }
@@ -15,42 +15,42 @@ CPepeEngineDirect3D9Plugin::CPepeEngineDirect3D9Plugin()
 // -----------------------------------------------------------------------------------------
 const tstring& CPepeEngineDirect3D9Plugin::getName() const
 {
-	return strPluginName;
+    return strPluginName;
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineDirect3D9Plugin::install()
 {
-	// Create the DirectX 9 rendering api
-	#ifdef PEPE_ENGINE_STATIC_LIB
-		HINSTANCE hInst = GetModuleHandle( NULL );
-	#else
-		HINSTANCE hInst = GetModuleHandle(_T("Renderer_Direct3D9.dll"));
-	#endif
+    // Create the DirectX 9 rendering api
+#ifdef PEPE_ENGINE_STATIC_LIB
+    HINSTANCE hInst = GetModuleHandle( NULL );
+#else
+    HINSTANCE hInst = GetModuleHandle(_T("Renderer_Direct3D9.dll"));
+#endif
 
-	m_pRenderer = new CPepeEngineDirect3D9Renderer();
+    m_pRenderer = new CPepeEngineDirect3D9Renderer();
 
-	// Register the render system
-	CPepeEngineCore::getSingleton().addRenderer(m_pRenderer);
+    // Register the render system
+    CPepeEngineCore::getSingleton().addRenderer(m_pRenderer);
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineDirect3D9Plugin::initialise()
 {
-	// nothing to do
+    // nothing to do
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineDirect3D9Plugin::shutdown()
 {
-	// nothing to do
+    // nothing to do
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineDirect3D9Plugin::uninstall()
 {
-	delete m_pRenderer;
-	m_pRenderer = 0;
+    delete m_pRenderer;
+    m_pRenderer = 0;
 }
 
 _PEPE_ENGINE_END

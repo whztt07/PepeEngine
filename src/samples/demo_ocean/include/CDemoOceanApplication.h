@@ -6,12 +6,12 @@
 class CDemoOceanApplication : public CDefApplication
 {
 public:
-		 CDemoOceanApplication();
-		 ~CDemoOceanApplication();
+    CDemoOceanApplication();
+    ~CDemoOceanApplication();
 
-	void createCamera();	
-	void createScene();	
-	bool setup();
+    void createCamera();
+    void createScene();
+    bool setup();
 };
 
 #endif

@@ -6,31 +6,31 @@ _PEPE_ENGINE_START
 // -----------------------------------------------------------------------------------------
 IPepeEngineResource::IPepeEngineResource(tstring strName) : CPepeEngineShared()
 {
-	m_bIsLoaded = false; 
-	m_strName	= strName;
+    m_bIsLoaded = false;
+    m_strName   = strName;
 }
 
 // -----------------------------------------------------------------------------------------
-IPepeEngineResource::~IPepeEngineResource() 
-{		
-}
-
-// -----------------------------------------------------------------------------------------
-bool IPepeEngineResource::isLoaded() const 
+IPepeEngineResource::~IPepeEngineResource()
 {
-	return m_bIsLoaded;
 }
 
 // -----------------------------------------------------------------------------------------
-void IPepeEngineResource::setLoaded(bool bLoaded) 
+bool IPepeEngineResource::isLoaded() const
 {
-	m_bIsLoaded = bLoaded;
+    return m_bIsLoaded;
 }
 
 // -----------------------------------------------------------------------------------------
-const tstring& IPepeEngineResource::getName() const 
+void IPepeEngineResource::setLoaded(bool bLoaded)
 {
-	return m_strName;
+    m_bIsLoaded = bLoaded;
+}
+
+// -----------------------------------------------------------------------------------------
+const tstring& IPepeEngineResource::getName() const
+{
+    return m_strName;
 }
 
 _PEPE_ENGINE_END

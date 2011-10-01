@@ -7,103 +7,95 @@ _PEPE_ENGINE_START
 // -----------------------------------------------------------------------------------------
 CPepeEngineSubEntity::CPepeEngineSubEntity(CPepeEngineEntity* pParentEntity, CPepeEngineSubMesh* pSubMesh)
 {
-	m_pParentEntity = pParentEntity;
-	m_pSubMesh		= pSubMesh;
+    m_pParentEntity = pParentEntity;
+    m_pSubMesh      = pSubMesh;
 
-	tstring		strNewMatName		= CPepeEngineMaterialManager::getSingleton().generateGUID();
-	MaterialPtr pMaterial			= CPepeEngineMaterialManager::getSingleton().create(
-		strNewMatName
-	);
-	MaterialPtr pCurrentMaterial	= CPepeEngineMaterialManager::getSingleton().getByName(
-		pSubMesh->getMaterialName()
-	);
+    tstring     strNewMatName       = CPepeEngineMaterialManager::getSingleton().generateGUID();
+    MaterialPtr pMaterial           = CPepeEngineMaterialManager::getSingleton().create(
+                                          strNewMatName
+                                      );
+    MaterialPtr pCurrentMaterial    = CPepeEngineMaterialManager::getSingleton().getByName(
+                                          pSubMesh->getMaterialName()
+                                      );
 
-	*pMaterial = *pCurrentMaterial;
+    *pMaterial = *pCurrentMaterial;
 
-	setMaterialName(strNewMatName);
+    setMaterialName(strNewMatName);
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineSubEntity::render() const
-{	
-	IPepeEngineRenderer* pRenderer	= CPepeEngineCore::getSingleton().getRenderer();
-	MaterialPtr pCurrentMaterial	= CPepeEngineMaterialManager::getSingleton().getByName(
-		getMaterialName()
-	);
-		
-	pCurrentMaterial->load();
+{
+    IPepeEngineRenderer* pRenderer  = CPepeEngineCore::getSingleton().getRenderer();
+    MaterialPtr pCurrentMaterial    = CPepeEngineMaterialManager::getSingleton().getByName(
+                                          getMaterialName()
+                                      );
 
-	pCurrentMaterial->setRenderState();
-	CPepeEngineCore::getSingleton().getSceneManager()->setCurrentMaterial(pCurrentMaterial);
-			
-	if (!pCurrentMaterial->hasGPUProgram())
-	{
-		if (pCurrentMaterial->getTexture())
-		{			
-			pRenderer->setTextureUnitState(0, pCurrentMaterial->getTextureUnitState());
-			pRenderer->setTexture(pCurrentMaterial->getTexture());			
-		} else
-		{
-			pRenderer->setTexture(TexturePtr(NULL));
-		}
+    pCurrentMaterial->load();
 
-		pRenderer->setMaterial(pCurrentMaterial);
-		pRenderer->unbindGPUPrograms();
-	} else
-	{		
-		if (pCurrentMaterial->hasVertexShader())
-		{
-			CPepeEngineGPUProgramParameters* params = pCurrentMaterial->getVertexShader()->getParameters();
-			params->updateAutoConstantParameters(
-				CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
-			);
-			params->updateAutoConstantParametersLights(
-				CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
-			);				
-			
-			if (CPepeEngineCore::getSingleton().getSceneManager()->hasSkyBox() &&
-				params->useSkyBox())
-			{
-				params->bindTexture(
-					_T("skyBox"),
-					CPepeEngineCore::getSingleton().getSceneManager()->getSkyBox()->getTexture()
-				);
-			}
+    pCurrentMaterial->setRenderState();
+    CPepeEngineCore::getSingleton().getSceneManager()->setCurrentMaterial(pCurrentMaterial);
 
-			pCurrentMaterial->getVertexShader()->setProgramSamplers(pCurrentMaterial->getTextureUnitState());
+    if (!pCurrentMaterial->hasGPUProgram()) {
+        if (pCurrentMaterial->getTexture()) {
+            pRenderer->setTextureUnitState(0, pCurrentMaterial->getTextureUnitState());
+            pRenderer->setTexture(pCurrentMaterial->getTexture());
+        } else {
+            pRenderer->setTexture(TexturePtr(NULL));
+        }
 
-			pRenderer->bindGPUProgramParameters(GPU_VERTEX_SHADER, params);
-			pRenderer->bindGPUProgram(pCurrentMaterial->getVertexShader());
-		}
+        pRenderer->setMaterial(pCurrentMaterial);
+        pRenderer->unbindGPUPrograms();
+    } else {
+        if (pCurrentMaterial->hasVertexShader()) {
+            CPepeEngineGPUProgramParameters* params = pCurrentMaterial->getVertexShader()->getParameters();
+            params->updateAutoConstantParameters(
+                CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
+            );
+            params->updateAutoConstantParametersLights(
+                CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
+            );
 
-		if (pCurrentMaterial->hasPixelShader())
-		{
-			CPepeEngineGPUProgramParameters* params = pCurrentMaterial->getPixelShader()->getParameters();
+            if (CPepeEngineCore::getSingleton().getSceneManager()->hasSkyBox() &&
+                params->useSkyBox()) {
+                params->bindTexture(
+                    _T("skyBox"),
+                    CPepeEngineCore::getSingleton().getSceneManager()->getSkyBox()->getTexture()
+                );
+            }
 
-			params->updateAutoConstantParameters(
-				CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
-			);
-			params->updateAutoConstantParametersLights(
-				CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
-			);
-			
-			if (CPepeEngineCore::getSingleton().getSceneManager()->hasSkyBox() &&
-				params->useSkyBox())
-			{
-				params->bindTexture(
-					_T("skyBox"), 
-					CPepeEngineCore::getSingleton().getSceneManager()->getSkyBox()->getTexture()
-				);
-			}
+            pCurrentMaterial->getVertexShader()->setProgramSamplers(pCurrentMaterial->getTextureUnitState());
 
-			pCurrentMaterial->getPixelShader()->setProgramSamplers(pCurrentMaterial->getTextureUnitState());
+            pRenderer->bindGPUProgramParameters(GPU_VERTEX_SHADER, params);
+            pRenderer->bindGPUProgram(pCurrentMaterial->getVertexShader());
+        }
 
-			pRenderer->bindGPUProgramParameters(GPU_PIXEL_SHADER, params);
-			pRenderer->bindGPUProgram(pCurrentMaterial->getPixelShader());			
-		}
-	}
-							
-	pRenderer->render(m_pSubMesh->getRenderOperation());	
-}	
+        if (pCurrentMaterial->hasPixelShader()) {
+            CPepeEngineGPUProgramParameters* params = pCurrentMaterial->getPixelShader()->getParameters();
+
+            params->updateAutoConstantParameters(
+                CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
+            );
+            params->updateAutoConstantParametersLights(
+                CPepeEngineCore::getSingleton().getSceneManager()->getAutoParamDataSource()
+            );
+
+            if (CPepeEngineCore::getSingleton().getSceneManager()->hasSkyBox() &&
+                params->useSkyBox()) {
+                params->bindTexture(
+                    _T("skyBox"),
+                    CPepeEngineCore::getSingleton().getSceneManager()->getSkyBox()->getTexture()
+                );
+            }
+
+            pCurrentMaterial->getPixelShader()->setProgramSamplers(pCurrentMaterial->getTextureUnitState());
+
+            pRenderer->bindGPUProgramParameters(GPU_PIXEL_SHADER, params);
+            pRenderer->bindGPUProgram(pCurrentMaterial->getPixelShader());
+        }
+    }
+
+    pRenderer->render(m_pSubMesh->getRenderOperation());
+}
 
 _PEPE_ENGINE_END

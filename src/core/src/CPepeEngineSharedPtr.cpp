@@ -16,29 +16,29 @@ CPepeEngineShared::CPepeEngineShared(const CPepeEngineShared &) : nCount(0)
 // -----------------------------------------------------------------------------------------
 CPepeEngineShared& CPepeEngineShared::operator=(const CPepeEngineShared &)
 {
-	return *this;
+    return *this;
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineShared::ref() const
 {
-	nCount++;
+    nCount++;
 }
 
 // -----------------------------------------------------------------------------------------
 void CPepeEngineShared::deref() const
 {
-	assert(nCount > 0 && "Invalid reference count");
-	if (!--nCount)
-	{
-		delete this;
-	}
+    assert(nCount > 0 && "Invalid reference count");
+
+    if (!--nCount) {
+        delete this;
+    }
 }
 
 // -----------------------------------------------------------------------------------------
 int CPepeEngineShared::count() const
 {
-	return nCount;
+    return nCount;
 }
 
 // -----------------------------------------------------------------------------------------

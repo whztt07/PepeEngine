@@ -1,14 +1,14 @@
 /**
- * Project:		PepeEngine
- * File:		PepeEngineInit.h 
+ * Project:     PepeEngine
+ * File:        PepeEngineInit.h
  *
- * @brief		Declaration of constant values, macros etc. used by PepeEngine
+ * @brief       Declaration of constant values, macros etc. used by PepeEngine
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-02-16
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-02-16
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef PEPEENGINEINIT_H
@@ -25,29 +25,29 @@
 #pragma warning(disable : 4661)
 
 /** @{ PepeEngine namespace */
-#define _PEPE_ENGINE_START	namespace pepeengine {
-#define _PEPE_ENGINE_END	}
-#define PEPE_ENGINE			using namespace pepeengine;
+#define _PEPE_ENGINE_START  namespace pepeengine {
+#define _PEPE_ENGINE_END    }
+#define PEPE_ENGINE         using namespace pepeengine;
 /** @} */
 
 #include "PepeEnginePlatform.h"
 
-#if PEPE_ENGINE_PLATFORM == PEPE_ENGINE_PLATFORM_WIN32	
-#	define PEPE_ENGINE_SHOW_MESSAGE(strMessage) ::MessageBox(NULL, (LPCTSTR)strMessage, _T("PepeEngine Error"), MB_ICONSTOP);				
+#if PEPE_ENGINE_PLATFORM == PEPE_ENGINE_PLATFORM_WIN32
+#   define PEPE_ENGINE_SHOW_MESSAGE(strMessage) ::MessageBox(NULL, (LPCTSTR)strMessage, _T("PepeEngine Error"), MB_ICONSTOP);
 #else
-#	error operating system not supported	
+#   error operating system not supported    
 #endif
 
 #if UNICODE
-	#define tstring			std::wstring
-	#define tstringstream	std::wstringstream
-	#define tofstream		std::wofstream
-	#define tifstream		std::wifstream
+#define tstring         std::wstring
+#define tstringstream   std::wstringstream
+#define tofstream       std::wofstream
+#define tifstream       std::wifstream
 #else
-	#define tstring			std::string
-	#define tstringstream	std::stringstream
-	#define tofstream		std::ofstream
-	#define tifstream		std::ifstream
+#define tstring         std::string
+#define tstringstream   std::stringstream
+#define tofstream       std::ofstream
+#define tifstream       std::ifstream
 #endif
 
 _PEPE_ENGINE_START

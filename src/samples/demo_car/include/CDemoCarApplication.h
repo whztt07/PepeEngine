@@ -6,12 +6,12 @@
 class CDemoCarApplication : public CDefApplication
 {
 public:
-		 CDemoCarApplication();
-		 ~CDemoCarApplication();
-	
-	void createCamera();
-	void createScene();	
-	bool setup();
+    CDemoCarApplication();
+    ~CDemoCarApplication();
+
+    void createCamera();
+    void createScene();
+    bool setup();
 };
 
 #endif

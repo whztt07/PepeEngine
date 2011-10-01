@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Middleware
- * File:	IPepeEngineIndexBuffer.h 
+ * Tier:    Middleware
+ * File:    IPepeEngineIndexBuffer.h
  *
- * @brief	Declaration of IPepeEngineIndexBuffer interface.  
- *			
- * @author		Piotr 'pepe' Picheta
- * @date		2008-03-20
+ * @brief   Declaration of IPepeEngineIndexBuffer interface.
+ *
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-03-20
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -25,23 +25,21 @@ class _PepeEngineExport IPepeEngineIndexBuffer : public IPepeEngineBuffer
 {
 public:
 
-	enum IndexType 
-	{
-		IT_16BIT,
-		IT_32BIT
-	};
+    enum IndexType {
+        IT_16BIT,
+        IT_32BIT
+    };
 
-	IPepeEngineIndexBuffer(Usage usage, size_t uiBufferSize, IndexType indexType, bool bUseSystemMemory) 
-		: IPepeEngineBuffer(usage, uiBufferSize, bUseSystemMemory) 
-	{
-		m_indexType		= indexType;
-		m_bufferType	= BT_INDEX_BUFFER; 
-	}
+    IPepeEngineIndexBuffer(Usage usage, size_t uiBufferSize, IndexType indexType, bool bUseSystemMemory)
+        : IPepeEngineBuffer(usage, uiBufferSize, bUseSystemMemory) {
+        m_indexType     = indexType;
+        m_bufferType    = BT_INDEX_BUFFER;
+    }
 
-	virtual ~IPepeEngineIndexBuffer() {}
+    virtual ~IPepeEngineIndexBuffer() {}
 
 protected:
-	IndexType m_indexType;
+    IndexType m_indexType;
 };
 
 _PEPE_ENGINE_END

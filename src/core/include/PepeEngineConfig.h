@@ -5,7 +5,7 @@
 
 _PEPE_ENGINE_START
 
-#define MAX_LIGHTS	8
+#define MAX_LIGHTS  8
 
 _PEPE_ENGINE_END
 

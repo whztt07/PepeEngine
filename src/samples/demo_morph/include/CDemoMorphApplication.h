@@ -6,11 +6,11 @@
 class CDemoMorphApplication : public CDefApplication
 {
 public:
-		 CDemoMorphApplication();
-		 ~CDemoMorphApplication();
-	
-	void createScene();	
-	bool setup();
+    CDemoMorphApplication();
+    ~CDemoMorphApplication();
+
+    void createScene();
+    bool setup();
 };
 
 #endif

@@ -4,9 +4,9 @@
 #include "CDefApplicationFrameListener.h"
 
 class CDemoSceneManagerFrameListener : public CDefApplicationFrameListener
-{			
-public:						
-	bool frameStarted(const FrameEvent& frameEvent);	
+{
+public:
+    bool frameStarted(const FrameEvent& frameEvent);
 };
 
 #endif

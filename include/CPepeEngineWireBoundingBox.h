@@ -1,15 +1,15 @@
 /**
- * Project:		PepeEngine
- * Tier:		Frontend
- * File:		CPepeEngineWireBoundingBox.h   
+ * Project:     PepeEngine
+ * Tier:        Frontend
+ * File:        CPepeEngineWireBoundingBox.h
  *
- * @brief		Declaration of CPepeEngineWireBoundingBox class.
+ * @brief       Declaration of CPepeEngineWireBoundingBox class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-11-30
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-11-30
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef CPEPEENGINEWIREBOUNDINGBOX_H
@@ -22,13 +22,13 @@
 _PEPE_ENGINE_START
 
 class _PepeEngineExport CPepeEngineWireBoundingBox : public IPepeEngineSimpleRenderable
-{	
-public:	
-		 CPepeEngineWireBoundingBox();
-		 CPepeEngineWireBoundingBox(const CPepeEngineAxisAlignedBox& aabb);
-		 ~CPepeEngineWireBoundingBox();
+{
+public:
+    CPepeEngineWireBoundingBox();
+    CPepeEngineWireBoundingBox(const CPepeEngineAxisAlignedBox& aabb);
+    ~CPepeEngineWireBoundingBox();
 
-	void loadDataFromAABB(const CPepeEngineAxisAlignedBox& aabb);
+    void loadDataFromAABB(const CPepeEngineAxisAlignedBox& aabb);
 };
 
 _PEPE_ENGINE_END

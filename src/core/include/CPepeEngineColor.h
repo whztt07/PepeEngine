@@ -1,15 +1,15 @@
 /**
- * Project:		PepeEngine
- * Tier:		Frontend
- * File:		CPepeEngineColor.h   
+ * Project:     PepeEngine
+ * Tier:        Frontend
+ * File:        CPepeEngineColor.h
  *
- * @brief		Declaration of CPepeEngineColor class.
+ * @brief       Declaration of CPepeEngineColor class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-05-12
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-05-12
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef CPEPEENGINECOLOR_H
@@ -25,195 +25,179 @@ typedef unsigned int ABGR;
 typedef unsigned int BGRA;
 
 class _PepeEngineExport CPepeEngineColor
-{	
+{
 public:
 
-	static const CPepeEngineColor BLACK;
-	static const CPepeEngineColor WHITE;
+    static const CPepeEngineColor BLACK;
+    static const CPepeEngineColor WHITE;
 
-	float r;
-	float g;
-	float b;
-	float a;
+    float r;
+    float g;
+    float b;
+    float a;
 
-	explicit CPepeEngineColor(float fR = 1.0f, float fG = 1.0f, float fB = 1.0f, float fA = 1.0f) : r(fR), g(fG), b(fB), a(fA) {}
-	~CPepeEngineColor() {}
+    explicit CPepeEngineColor(float fR = 1.0f, float fG = 1.0f, float fB = 1.0f, float fA = 1.0f) : r(fR), g(fG), b(fB), a(fA) {}
+    ~CPepeEngineColor() {}
 
     bool operator==(const CPepeEngineColor& rhs) const;
     bool operator!=(const CPepeEngineColor& rhs) const;
-    
+
     RGBA getAsRGBA(void) const;
     ARGB getAsARGB(void) const;
-	BGRA getAsBGRA(void) const;
+    BGRA getAsBGRA(void) const;
     ABGR getAsABGR(void) const;
-	void setAsRGBA(const RGBA val);
+    void setAsRGBA(const RGBA val);
     void setAsARGB(const ARGB val);
-	void setAsBGRA(const BGRA val);
+    void setAsBGRA(const BGRA val);
     void setAsABGR(const ABGR val);
 
-	void saturate(void);
-	CPepeEngineColor saturateCopy(void) const;
+    void saturate(void);
+    CPepeEngineColor saturateCopy(void) const;
 
-	inline void set(float r, float g, float b, float a = 1.0f)
-	{
-		this->r = r;
-		this->g = g;
-		this->b = b;
-		this->a = a;
-	}
+    inline void set(float r, float g, float b, float a = 1.0f) {
+        this->r = r;
+        this->g = g;
+        this->b = b;
+        this->a = a;
+    }
 
-	inline float operator [](const size_t i) const
-	{
-		assert(i < 4);
-		return *(&r + i);
-	}
-		
-	inline float& operator [] (const size_t i)
-	{
-		assert(i < 4);
+    inline float operator [](const size_t i) const {
+        assert(i < 4);
+        return *(&r + i);
+    }
 
-		return *(&r + i);
-	}
-		
-	inline float* ptr()
-	{
-		return &r;
-	}
+    inline float& operator [] (const size_t i) {
+        assert(i < 4);
 
-	inline const float* ptr() const
-	{
-		return &r;
-	}
-			
-    inline CPepeEngineColor operator +(const CPepeEngineColor& rkVector) const
-    {
-		CPepeEngineColor kSum;
+        return *(&r + i);
+    }
 
-		kSum.r = r + rkVector.r;
-		kSum.g = g + rkVector.g;
-		kSum.b = b + rkVector.b;
-		kSum.a = a + rkVector.a;
+    inline float* ptr() {
+        return &r;
+    }
 
-		return kSum;
-	}
+    inline const float* ptr() const {
+        return &r;
+    }
 
-	inline CPepeEngineColor operator -(const CPepeEngineColor& rkVector) const
-	{
-		CPepeEngineColor kDiff;
+    inline CPepeEngineColor operator +(const CPepeEngineColor& rkVector) const {
+        CPepeEngineColor kSum;
 
-		kDiff.r = r - rkVector.r;
-		kDiff.g = g - rkVector.g;
-		kDiff.b = b - rkVector.b;
-		kDiff.a = a - rkVector.a;
+        kSum.r = r + rkVector.r;
+        kSum.g = g + rkVector.g;
+        kSum.b = b + rkVector.b;
+        kSum.a = a + rkVector.a;
 
-		return kDiff;
-	}
+        return kSum;
+    }
 
-	inline CPepeEngineColor operator *(const float fScalar) const
-	{
-		CPepeEngineColor kProd;
+    inline CPepeEngineColor operator -(const CPepeEngineColor& rkVector) const {
+        CPepeEngineColor kDiff;
 
-		kProd.r = fScalar * r;
-		kProd.g = fScalar * g;
-		kProd.b = fScalar * b;
-		kProd.a = fScalar * a;
+        kDiff.r = r - rkVector.r;
+        kDiff.g = g - rkVector.g;
+        kDiff.b = b - rkVector.b;
+        kDiff.a = a - rkVector.a;
 
-		return kProd;
-	}
+        return kDiff;
+    }
 
-	inline CPepeEngineColor operator *(const CPepeEngineColor& rhs) const
-	{
-		CPepeEngineColor kProd;
+    inline CPepeEngineColor operator *(const float fScalar) const {
+        CPepeEngineColor kProd;
 
-		kProd.r = rhs.r * r;
-		kProd.g = rhs.g * g;
-		kProd.b = rhs.b * b;
-		kProd.a = rhs.a * a;
+        kProd.r = fScalar * r;
+        kProd.g = fScalar * g;
+        kProd.b = fScalar * b;
+        kProd.a = fScalar * a;
 
-		return kProd;
-	}
+        return kProd;
+    }
 
-	inline CPepeEngineColor operator /(const CPepeEngineColor& rhs) const
-	{
-		CPepeEngineColor kProd;
+    inline CPepeEngineColor operator *(const CPepeEngineColor& rhs) const {
+        CPepeEngineColor kProd;
 
-		kProd.r = rhs.r / r;
-		kProd.g = rhs.g / g;
-		kProd.b = rhs.b / b;
-		kProd.a = rhs.a / a;
+        kProd.r = rhs.r * r;
+        kProd.g = rhs.g * g;
+        kProd.b = rhs.b * b;
+        kProd.a = rhs.a * a;
 
-		return kProd;
-	}
+        return kProd;
+    }
 
-    inline CPepeEngineColor operator /(const float fScalar) const
-	{
-		assert(fScalar != 0.0);
+    inline CPepeEngineColor operator /(const CPepeEngineColor& rhs) const {
+        CPepeEngineColor kProd;
 
-		CPepeEngineColor kDiv;
+        kProd.r = rhs.r / r;
+        kProd.g = rhs.g / g;
+        kProd.b = rhs.b / b;
+        kProd.a = rhs.a / a;
 
-		float fInv = 1.0f / fScalar;
-		kDiv.r = r * fInv;
-		kDiv.g = g * fInv;
-		kDiv.b = b * fInv;
-		kDiv.a = a * fInv;
+        return kProd;
+    }
 
-		return kDiv;
-	}
+    inline CPepeEngineColor operator /(const float fScalar) const {
+        assert(fScalar != 0.0);
 
-	_PepeEngineExport inline friend CPepeEngineColor operator *(const float fScalar, const CPepeEngineColor& rkVector)
-	{
-		CPepeEngineColor kProd;
+        CPepeEngineColor kDiv;
 
-		kProd.r = fScalar * rkVector.r;
-		kProd.g = fScalar * rkVector.g;
-		kProd.b = fScalar * rkVector.b;
-		kProd.a = fScalar * rkVector.a;
+        float fInv = 1.0f / fScalar;
+        kDiv.r = r * fInv;
+        kDiv.g = g * fInv;
+        kDiv.b = b * fInv;
+        kDiv.a = a * fInv;
 
-		return kProd;
-	}
-        
-	inline CPepeEngineColor& operator +=(const CPepeEngineColor& rkVector)
-    {
-		r += rkVector.r;
-		g += rkVector.g;
-		b += rkVector.b;
-		a += rkVector.a;
+        return kDiv;
+    }
 
-		return *this;
-	}
+    _PepeEngineExport inline friend CPepeEngineColor operator *(const float fScalar, const CPepeEngineColor& rkVector) {
+        CPepeEngineColor kProd;
 
-	inline CPepeEngineColor& operator -=(const CPepeEngineColor& rkVector)
-	{
-		r -= rkVector.r;
-		g -= rkVector.g;
-		b -= rkVector.b;
-		a -= rkVector.a;
+        kProd.r = fScalar * rkVector.r;
+        kProd.g = fScalar * rkVector.g;
+        kProd.b = fScalar * rkVector.b;
+        kProd.a = fScalar * rkVector.a;
 
-		return *this;
-	}
+        return kProd;
+    }
 
-	inline CPepeEngineColor& operator *=(const float fScalar)
-	{
-		r *= fScalar;
-		g *= fScalar;
-		b *= fScalar;
-		a *= fScalar;
-		return *this;
-	}
+    inline CPepeEngineColor& operator +=(const CPepeEngineColor& rkVector) {
+        r += rkVector.r;
+        g += rkVector.g;
+        b += rkVector.b;
+        a += rkVector.a;
 
-	inline CPepeEngineColor& operator /=(const float fScalar)
-	{
-		assert(fScalar != 0.0);
+        return *this;
+    }
 
-		float fInv = 1.0f / fScalar;
+    inline CPepeEngineColor& operator -=(const CPepeEngineColor& rkVector) {
+        r -= rkVector.r;
+        g -= rkVector.g;
+        b -= rkVector.b;
+        a -= rkVector.a;
 
-		r *= fInv;
-		g *= fInv;
-		b *= fInv;
-		a *= fInv;
+        return *this;
+    }
 
-		return *this;
-	}
+    inline CPepeEngineColor& operator *=(const float fScalar) {
+        r *= fScalar;
+        g *= fScalar;
+        b *= fScalar;
+        a *= fScalar;
+        return *this;
+    }
+
+    inline CPepeEngineColor& operator /=(const float fScalar) {
+        assert(fScalar != 0.0);
+
+        float fInv = 1.0f / fScalar;
+
+        r *= fInv;
+        g *= fInv;
+        b *= fInv;
+        a *= fInv;
+
+        return *this;
+    }
 };
 
 _PEPE_ENGINE_END

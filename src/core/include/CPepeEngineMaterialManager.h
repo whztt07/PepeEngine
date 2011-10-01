@@ -1,15 +1,15 @@
 /**
- * Project:		PepeEngine
- * Tier:		Frontend 
- * File:		CPepeEngineMaterialManager.h 
+ * Project:     PepeEngine
+ * Tier:        Frontend
+ * File:        CPepeEngineMaterialManager.h
  *
- * @brief		Declaration of CPepeEngineMaterialManager class. 
- *			
- * @author		Piotr 'pepe' Picheta
- * @date		2008-02-28
+ * @brief       Declaration of CPepeEngineMaterialManager class.
+ *
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-02-28
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #pragma once
@@ -21,24 +21,24 @@
 
 #include "CPepeEngineMaterial.h"
 #include "CPepeEngineSingleton.h"
-#include "IPepeEngineResourceManager.h" 
+#include "IPepeEngineResourceManager.h"
 
 _PEPE_ENGINE_START
 
-class _PepeEngineExport CPepeEngineMaterialManager 
-	: public IPepeEngineResourceManager, public CPepeEngineSingleton<CPepeEngineMaterialManager>
-{	
-public:	
-										CPepeEngineMaterialManager();
-	
-	ResourcePtr							create(const tstring& strName);
+class _PepeEngineExport CPepeEngineMaterialManager
+    : public IPepeEngineResourceManager, public CPepeEngineSingleton<CPepeEngineMaterialManager>
+{
+public:
+    CPepeEngineMaterialManager();
 
-	tstring								generateGUID();	
+    ResourcePtr                         create(const tstring& strName);
 
-	static CPepeEngineMaterialManager&	getSingleton(void);
-	static CPepeEngineMaterialManager*	getSingletonPtr(void);	
+    tstring                             generateGUID();
+
+    static CPepeEngineMaterialManager&  getSingleton(void);
+    static CPepeEngineMaterialManager*  getSingletonPtr(void);
 private:
-	unsigned int						m_nCounter;	
+    unsigned int                        m_nCounter;
 };
 
 _PEPE_ENGINE_END

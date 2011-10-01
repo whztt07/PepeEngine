@@ -1,15 +1,15 @@
 /**
- * Project:		PepeEngine
- * Tier:		Frontend
- * File:		CPepeEngineImageManager.h   
+ * Project:     PepeEngine
+ * Tier:        Frontend
+ * File:        CPepeEngineImageManager.h
  *
- * @brief		Declaration of CPepeEngineImageManager class.
+ * @brief       Declaration of CPepeEngineImageManager class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-11-12
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-11-12
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef CPEPEENGINEIMAGEMANAGER_H
@@ -23,17 +23,17 @@
 
 _PEPE_ENGINE_START
 
-class _PepeEngineExport CPepeEngineImageManager 
-	: public IPepeEngineResourceManager, public CPepeEngineSingleton<CPepeEngineImageManager>
-{	
+class _PepeEngineExport CPepeEngineImageManager
+    : public IPepeEngineResourceManager, public CPepeEngineSingleton<CPepeEngineImageManager>
+{
 public:
-									CPepeEngineImageManager();
-									~CPepeEngineImageManager();
+    CPepeEngineImageManager();
+    ~CPepeEngineImageManager();
 
-	ResourcePtr						create(const tstring& strName);
+    ResourcePtr                     create(const tstring& strName);
 
-	static CPepeEngineImageManager& getSingleton(void);
-	static CPepeEngineImageManager* getSingletonPtr(void);	
+    static CPepeEngineImageManager& getSingleton(void);
+    static CPepeEngineImageManager* getSingletonPtr(void);
 };
 
 _PEPE_ENGINE_END

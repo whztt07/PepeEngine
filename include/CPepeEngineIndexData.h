@@ -1,13 +1,13 @@
 /**
-* Project:	PepeEngine
-* Tier:		Frontend
-* File:		CPepeEngineIndexData.h   
+* Project:  PepeEngine
+* Tier:     Frontend
+* File:     CPepeEngineIndexData.h
 *
-* @brief	Declaration of CPepeEngineIndexData class.
+* @brief    Declaration of CPepeEngineIndexData class.
 *
-* @author		Piotr 'pepe' Picheta
-* @date			2008-07-09
-* @copyright	Copyright (c) 2008 Piotr Picheta
+* @author       Piotr 'pepe' Picheta
+* @date         2008-07-09
+* @copyright    Copyright (c) 2008 Piotr Picheta
 *
 * @version 1.0
 */
@@ -22,15 +22,15 @@
 _PEPE_ENGINE_START
 
 class _PepeEngineExport CPepeEngineIndexData
-{	
+{
 public:
-	CPepeEngineIndexData();
-	~CPepeEngineIndexData();
+    CPepeEngineIndexData();
+    ~CPepeEngineIndexData();
 
-	size_t	m_nIndexStart;
-	size_t	m_nIndexCount;
+    size_t  m_nIndexStart;
+    size_t  m_nIndexCount;
 
-	IPepeEngineIndexBuffer* m_pIndexBuffer;		
+    IPepeEngineIndexBuffer* m_pIndexBuffer;
 };
 
 _PEPE_ENGINE_END

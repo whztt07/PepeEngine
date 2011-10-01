@@ -1,11 +1,11 @@
 /**
  * Project: PepeEngine
- * File:	PepeEnginePlatform.h  
+ * File:    PepeEnginePlatform.h
  *
- * @brief	Platform depended declaration.
+ * @brief   Platform depended declaration.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-05-21
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-05-21
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -28,7 +28,7 @@ _PEPE_ENGINE_START
 #define PEPE_ENGINE_ARCHITECTURE_64 2
 
 #if defined(__WIN32__) || defined(_WIN32)
-	#define PEPE_ENGINE_PLATFORM PEPE_ENGINE_PLATFORM_WIN32	
+#define PEPE_ENGINE_PLATFORM PEPE_ENGINE_PLATFORM_WIN32
 #endif
 
 #if defined( _MSC_VER )
@@ -45,8 +45,8 @@ _PEPE_ENGINE_START
 #endif
 
 
-/** 
- *	Find the arch type 
+/**
+ *  Find the arch type
  */
 #if defined(__x86_64__) || defined(_M_X64) || defined(__powerpc64__) || defined(__alpha__) || defined(__ia64__) || defined(__s390__) || defined(__s390x__)
 #   define PEPE_ENGINE_ARCH_TYPE PEPE_ENGINE_ARCHITECTURE_64
@@ -55,17 +55,17 @@ _PEPE_ENGINE_START
 #endif
 
 #if PEPE_ENGINE_PLATFORM == PEPE_ENGINE_PLATFORM_WIN32
-#	if defined(PEPE_ENGINE_STATIC_LIB)
-#		define _PepeEngineExport
-#	else
-#		if defined(PEPE_ENGINE_NONCLIENT_BUILD)
-#			define _PepeEngineExport __declspec(dllexport)
-#		else
-# 			define _PepeEngineExport __declspec(dllimport)
-#		endif
-#	endif
+#   if defined(PEPE_ENGINE_STATIC_LIB)
+#       define _PepeEngineExport
+#   else
+#       if defined(PEPE_ENGINE_NONCLIENT_BUILD)
+#           define _PepeEngineExport __declspec(dllexport)
+#       else
+#           define _PepeEngineExport __declspec(dllimport)
+#       endif
+#   endif
 #else
-#	error operating system not supported	
+#   error operating system not supported    
 #endif
 
 _PEPE_ENGINE_END

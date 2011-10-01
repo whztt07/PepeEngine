@@ -1,15 +1,15 @@
 /**
- * Project:		PepeEngine
- * Tier:		Frontend
- * File:		CPepeEngineDynamicLibrary.h   
+ * Project:     PepeEngine
+ * Tier:        Frontend
+ * File:        CPepeEngineDynamicLibrary.h
  *
- * @brief		Declaration of CPepeEngineDynamicLibrary class.
+ * @brief       Declaration of CPepeEngineDynamicLibrary class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-10-29
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-10-29
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
- * @version		1.0
+ * @version     1.0
  */
 
 #ifndef CPEPEENGINEDYNAMICLIBRARY_H
@@ -29,41 +29,42 @@ struct HINSTANCE__;
 typedef struct HINSTANCE__* hInstance;
 
 #else
-#	error operating system not supported	
+#   error operating system not supported    
 #endif
 
 
 _PEPE_ENGINE_START
 
 class _PepeEngineExport CPepeEngineDynamicLibrary : public IPepeEngineResource
-{	
-public:
-						CPepeEngineDynamicLibrary(const tstring& strName);
-						~CPepeEngineDynamicLibrary();
-	
-	void				load();
-	void				unload();
-
-	const tstring&		getName(void) const {return m_strName;}	
-	void*				getSymbol(const tstring& strName) const throw();
-protected:
-        
-	tstring				dynlibError(void);	
-	
-	/** 
-	 *	Handle to the loaded library.
-	 */
-	DYNLIB_HANDLE		m_hInst;
-};
-
-struct _PepeEngineExport DynamicLibraryPtr : public CPepeEngineSharedPtr<CPepeEngineDynamicLibrary>
 {
 public:
-	inline						DynamicLibraryPtr();
-	inline explicit				DynamicLibraryPtr(CPepeEngineDynamicLibrary* r);
-	inline						DynamicLibraryPtr(const DynamicLibraryPtr& r);
-	inline						DynamicLibraryPtr(const ResourcePtr& r); 
-	inline DynamicLibraryPtr&	operator=(const ResourcePtr& r);
+    CPepeEngineDynamicLibrary(const tstring& strName);
+    ~CPepeEngineDynamicLibrary();
+
+    void                load();
+    void                unload();
+
+    const tstring&      getName(void) const {
+        return m_strName;
+    }
+    void*               getSymbol(const tstring& strName) const throw();
+protected:
+
+    tstring             dynlibError(void);
+
+    /**
+     *  Handle to the loaded library.
+     */
+    DYNLIB_HANDLE       m_hInst;
+};
+
+struct _PepeEngineExport DynamicLibraryPtr : public CPepeEngineSharedPtr<CPepeEngineDynamicLibrary> {
+public:
+    inline                      DynamicLibraryPtr();
+    inline explicit             DynamicLibraryPtr(CPepeEngineDynamicLibrary* r);
+    inline                      DynamicLibraryPtr(const DynamicLibraryPtr& r);
+    inline                      DynamicLibraryPtr(const ResourcePtr& r);
+    inline DynamicLibraryPtr&   operator=(const ResourcePtr& r);
 };
 
 _PEPE_ENGINE_END

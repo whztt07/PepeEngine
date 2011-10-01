@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Frontend
- * File:	CPepeEngineXFileMeshLoader.h   
+ * Tier:    Frontend
+ * File:    CPepeEngineXFileMeshLoader.h
  *
- * @brief	Declaration of CPepeEngineXFileMeshLoader class.
+ * @brief   Declaration of CPepeEngineXFileMeshLoader class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-06-05
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-06-05
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -23,113 +23,106 @@
 _PEPE_ENGINE_START
 
 class _PepeEngineExport CPepeEngineXFileMeshLoader : public IPepeEngineMeshLoader
-{	
+{
 private:
 
-	typedef struct tVertex
-	{
-		float x, y, z;
-	} Vertex;
+    typedef struct tVertex {
+        float x, y, z;
+    } Vertex;
 
-	typedef struct tFace
-	{
-		unsigned int a, b, c;
-	} Face;
-	
-	typedef struct tFaceNormals
-	{
-		unsigned int a, b, c;
-	} FaceNormals;
+    typedef struct tFace {
+        unsigned int a, b, c;
+    } Face;
 
-	typedef struct tTexCoords
-	{
-		float u, v;
-	} TexCoords;
+    typedef struct tFaceNormals {
+        unsigned int a, b, c;
+    } FaceNormals;
 
-	typedef struct tMaterial
-	{
-		float		diffuse[4];
-		float		specular[4];
-		float		emissive[4];
-		float		ambient[4];
-		float		fPower;
-		tstring		strTextureName;
-		tstring		strMaterialName;
-	} Material;
+    typedef struct tTexCoords {
+        float u, v;
+    } TexCoords;
 
-	CPepeEngineMatrix4 m_frameMeshTransform;
+    typedef struct tMaterial {
+        float       diffuse[4];
+        float       specular[4];
+        float       emissive[4];
+        float       ambient[4];
+        float       fPower;
+        tstring     strTextureName;
+        tstring     strMaterialName;
+    } Material;
 
-	typedef struct tMesh
-	{
-		unsigned short nVertices;
-		unsigned short nFaces;
-		unsigned short nNormals;
-		unsigned short nTexCoords;
-		unsigned short nMaterials;
+    CPepeEngineMatrix4 m_frameMeshTransform;
 
-		/** @{ The nFirstxxx variables are used for mesh concatenation */
-		unsigned int nFirstVertex;
-		unsigned int nFirstFace;            
-		unsigned int nFirstTextureCoord;
-		unsigned int nFirstNormal;
-		unsigned int nFirstMaterial;
-		/** @} */
+    typedef struct tMesh {
+        unsigned short nVertices;
+        unsigned short nFaces;
+        unsigned short nNormals;
+        unsigned short nTexCoords;
+        unsigned short nMaterials;
 
-		Face*						pFaces;
-		FaceNormals*				pFaceNormals;
-		Vertex*						pVertices;
-		TexCoords*					pTexCoords;
-		CPepeEngineVector3*			pNormals;
-		unsigned short int*			pFaceMaterials;	
-		tstring						strName;
+        /** @{ The nFirstxxx variables are used for mesh concatenation */
+        unsigned int nFirstVertex;
+        unsigned int nFirstFace;
+        unsigned int nFirstTextureCoord;
+        unsigned int nFirstNormal;
+        unsigned int nFirstMaterial;
+        /** @} */
 
-		tMesh() 
-		{
-			nVertices			= 0;
-			nFaces				= 0;
-			nNormals			= 0;
-			nTexCoords			= 0;
-			nMaterials			= 0;
-			nFirstVertex		= 0;
-			nFirstFace			= 0;            
-			nFirstTextureCoord	= 0;
-			nFirstNormal		= 0;
-			nFirstMaterial		= 0;
+        Face*                       pFaces;
+        FaceNormals*                pFaceNormals;
+        Vertex*                     pVertices;
+        TexCoords*                  pTexCoords;
+        CPepeEngineVector3*         pNormals;
+        unsigned short int*         pFaceMaterials;
+        tstring                     strName;
 
-			pFaces				= NULL;
-			pFaceNormals		= NULL;
-			pVertices			= NULL;
-			pTexCoords			= NULL;
-			pNormals			= NULL;
-			pFaceMaterials		= NULL;			
-		}
-	} Mesh;
+        tMesh() {
+            nVertices           = 0;
+            nFaces              = 0;
+            nNormals            = 0;
+            nTexCoords          = 0;
+            nMaterials          = 0;
+            nFirstVertex        = 0;
+            nFirstFace          = 0;
+            nFirstTextureCoord  = 0;
+            nFirstNormal        = 0;
+            nFirstMaterial      = 0;
 
-	std::vector<Mesh*>		m_meshes;	
-	std::vector<Material*>	m_materials;
-	Mesh*					m_pLoadedMesh;
+            pFaces              = NULL;
+            pFaceNormals        = NULL;
+            pVertices           = NULL;
+            pTexCoords          = NULL;
+            pNormals            = NULL;
+            pFaceMaterials      = NULL;
+        }
+    } Mesh;
 
-	void concatenateMeshes(MeshPtr pMesh);
+    std::vector<Mesh*>      m_meshes;
+    std::vector<Material*>  m_materials;
+    Mesh*                   m_pLoadedMesh;
 
-	short int processBlock();
-	short int blockID(const std::string& strText);
-	void avoidTemplate();
-	void processBone();
-	void processMesh();
-	void processMeshNormals();
-	void processMeshTextureCoords(); 
-	void processMeshMaterials();
-	void processMaterial();
-	void processFrameTransformMatrix();
+    void concatenateMeshes(MeshPtr pMesh);
+
+    short int processBlock();
+    short int blockID(const std::string& strText);
+    void avoidTemplate();
+    void processBone();
+    void processMesh();
+    void processMeshNormals();
+    void processMeshTextureCoords();
+    void processMeshMaterials();
+    void processMaterial();
+    void processFrameTransformMatrix();
 public:
-	CPepeEngineXFileMeshLoader();
-	~CPepeEngineXFileMeshLoader();
+    CPepeEngineXFileMeshLoader();
+    ~CPepeEngineXFileMeshLoader();
 
-	void load(const tstring& strFileName, MeshPtr pMesh);
+    void load(const tstring& strFileName, MeshPtr pMesh);
 
-	bool isAvailableFileExtension(const tstring& strFileName) const;
+    bool isAvailableFileExtension(const tstring& strFileName) const;
 
-	void reset();
+    void reset();
 };
 
 _PEPE_ENGINE_END

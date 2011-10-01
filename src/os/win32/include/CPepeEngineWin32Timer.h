@@ -1,12 +1,12 @@
 /**
  * Project: PepeEngine
- * Tier:	Backend 
- * File:	CPepeEngineWin32Timer.h   
+ * Tier:    Backend
+ * File:    CPepeEngineWin32Timer.h
  *
- * @brief	Declaration of CPepeEngineWin32Timer class. 
+ * @brief   Declaration of CPepeEngineWin32Timer class.
  *
- * @author		Piotr 'pepe' Picheta
- * @date		2008-10-24
+ * @author      Piotr 'pepe' Picheta
+ * @date        2008-10-24
  * @copyright   Copyright (c) 2008 Piotr Picheta
  *
  * @version 1.0
@@ -30,43 +30,43 @@ _PEPE_ENGINE_START
 #endif
 
 class _PepeEngineWin32Export CPepeEngineWin32Timer : public IPepeEngineTimer
-{	
-	clock_t m_zeroClock;
+{
+    clock_t m_zeroClock;
 
-	DWORD			m_dwStartTick;
-	LONGLONG		m_lastTime;
-	LARGE_INTEGER	m_startTime;
-	LARGE_INTEGER	m_frequency;
-	DWORD			m_dwTimerMask;
+    DWORD           m_dwStartTick;
+    LONGLONG        m_lastTime;
+    LARGE_INTEGER   m_startTime;
+    LARGE_INTEGER   m_frequency;
+    DWORD           m_dwTimerMask;
 public:
 
-	CPepeEngineWin32Timer();
-	~CPepeEngineWin32Timer();
+    CPepeEngineWin32Timer();
+    ~CPepeEngineWin32Timer();
 
-	/** 
-	 *	Resets timer 
-	 */
-	void reset();
+    /**
+     *  Resets timer
+     */
+    void reset();
 
-	/** 
-	 *	Returns milliseconds since initialisation or last reset 
-	 */
-	unsigned long getMilliseconds();
+    /**
+     *  Returns milliseconds since initialisation or last reset
+     */
+    unsigned long getMilliseconds();
 
-	/** 
-	 *	Returns microseconds since initialisation or last reset 
-	 */
-	unsigned long getMicroseconds();
+    /**
+     *  Returns microseconds since initialisation or last reset
+     */
+    unsigned long getMicroseconds();
 
-	/** 
-	 *	Returns milliseconds since initialisation or last reset, only CPU time measured 
-	 */	
-	unsigned long getMillisecondsCPU();
+    /**
+     *  Returns milliseconds since initialisation or last reset, only CPU time measured
+     */
+    unsigned long getMillisecondsCPU();
 
-	/** 
-	 *	Returns microseconds since initialisation or last reset, only CPU time measured 
-	 */	
-	unsigned long getMicrosecondsCPU();
+    /**
+     *  Returns microseconds since initialisation or last reset, only CPU time measured
+     */
+    unsigned long getMicrosecondsCPU();
 };
 
 _PEPE_ENGINE_END
